@@ -5,15 +5,14 @@
     </Slide>
 
     <template #addons>
-      <Navigation />
-      <Pagination />
+      <CompoundNavigation />
     </template>
   </Carousel>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
-import { Carousel, Pagination, Navigation, Slide } from '../../dist/carousel.es'
+import { Carousel, CompoundNavigation, Slide } from '../../dist/carousel.es'
 
 import '../../dist/carousel.css'
 
@@ -22,8 +21,7 @@ export default defineComponent({
   components: {
     Carousel,
     Slide,
-    Pagination,
-    Navigation,
+    CompoundNavigation,
   },
 })
 </script>

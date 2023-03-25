@@ -1,0 +1,29 @@
+.carousel__compound-navigation {
+  position: relative;
+  max-width: 100%;
+  width: min-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  border-radius: 20px;
+  transition: 0.4s ease-in-out;
+}
+.carousel__compound-navigation:hover {
+  background: var(--vc-clr-white-alpha);
+  transition: 0.2s 0.4s ease-in-out;
+}
+.carousel__compound-navigation:hover > :is(.carousel__prev, .carousel__next) {
+  transition: 0.2s 0.4s ease-in-out;
+  opacity: 1;
+}
+.carousel__compound-navigation > :is(.carousel__prev, .carousel__next) {
+  transition: 0.4s ease-in-out;
+  position: static;
+  transform: translate(0);
+  opacity: 0;
+}
+
+.carousel__compound-navigation > .carousel__pagination {
+  margin: 0;
+}
