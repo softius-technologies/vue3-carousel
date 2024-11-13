@@ -173,6 +173,8 @@ export default defineComponent({
     const dragged = reactive({ x: 0, y: 0 })
     const isHover = ref(false)
     const isDragging = ref(false)
+    const initialDirectionThreshold = 10;
+    const isHorizontalDrag = ref(false)
 
     const handleMouseEnter = (): void => {
       isHover.value = true
@@ -194,7 +196,7 @@ export default defineComponent({
       if ((!isTouch && event.button !== 0) || isSliding.value) {
         return
       }
-
+      isHorizontalDrag.value = false;
       startPosition.x = isTouch ? event.touches[0].clientX : event.clientX
       startPosition.y = isTouch ? event.touches[0].clientY : event.clientY
 
@@ -210,8 +212,19 @@ export default defineComponent({
       const deltaX = endPosition.x - startPosition.x
       const deltaY = endPosition.y - startPosition.y
 
-      dragged.y = deltaY
-      dragged.x = deltaX
+      // Determine direction only on the first movement
+      if (!isHorizontalDrag.value && Math.abs(deltaX) > initialDirectionThreshold) {
+        isHorizontalDrag.value = true;
+      } else if (!isHorizontalDrag.value && Math.abs(deltaY) > initialDirectionThreshold) {
+        // If it's more vertical, stop dragging
+        handleDragEnd();
+        return;
+      }
+
+      if (isHorizontalDrag.value) {
+        dragged.x = deltaX;
+        dragged.y = deltaY;
+      }
     }, config.throttle)
 
     function handleDragEnd(): void {
@@ -234,6 +247,7 @@ export default defineComponent({
       dragged.y = 0
 
       isDragging.value = false
+      isHorizontalDrag.value = false
       document.removeEventListener(
         isTouch ? 'touchmove' : 'mousemove',
         handleDragging,
