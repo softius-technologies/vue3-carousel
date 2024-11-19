@@ -1,5 +1,5 @@
 /**
- * Vue 3 Carousel 0.3.4
+ * Vue 3 Carousel 0.3.5
  * (c) 2024
  * @license MIT
  */
@@ -537,7 +537,7 @@ var Carousel = defineComponent({
                 });
                 isSliding.value = false;
                 resetAutoplay();
-            }, config.transition);
+            }, config.animation);
         }
         function next() {
             slideTo(currentSlideIndex.value + config.itemsToScroll);
