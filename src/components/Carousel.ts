@@ -336,7 +336,7 @@ export default defineComponent({
 
         isSliding.value = false
         resetAutoplay()
-      }, config.transition)
+      }, config.animation)
     }
 
     function next(): void {
