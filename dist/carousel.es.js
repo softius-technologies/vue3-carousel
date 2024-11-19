@@ -10,6 +10,7 @@ const defaultConfigs = {
     itemsToScroll: 1,
     modelValue: 0,
     transition: 300,
+    animation: 1400,
     autoplay: 0,
     snapAlign: 'center',
     wrapAround: false,
