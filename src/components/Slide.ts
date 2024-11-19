@@ -20,7 +20,8 @@ export default defineComponent({
     const currentSlide = inject('currentSlide', ref(0))
     const slidesToScroll = inject('slidesToScroll', ref(0))
     const isSliding = inject('isSliding', ref(false))
-
+    const slidesCount = inject('slidesCount', ref(0))
+    
     const isActive: ComputedRef<boolean> = computed(
       () => props.index === currentSlide.value
     )
@@ -36,6 +37,12 @@ export default defineComponent({
 
       return props.index >= min && props.index <= max
     })
+    const isFirst: ComputedRef<boolean> = computed(
+      () => props.index === 0
+    )
+    const isLast: ComputedRef<boolean> = computed(
+      () => props.index === slidesCount.value - 1
+    )
 
     return () =>
       h(
@@ -50,6 +57,8 @@ export default defineComponent({
             'carousel__slide--prev': isPrev.value,
             'carousel__slide--next': isNext.value,
             'carousel__slide--sliding': isSliding.value,
+            'carousel__slide--first': isFirst.value,
+            'carousel__slide--last': isLast.value,
           },
           'aria-hidden': !isVisible.value,
         },

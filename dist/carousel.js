@@ -1,5 +1,5 @@
 /**
- * Vue 3 Carousel 0.5.3
+ * Vue 3 Carousel 0.5.4
  * (c) 2024
  * @license MIT
  */
@@ -791,6 +791,7 @@
           const currentSlide = vue.inject('currentSlide', vue.ref(0));
           const slidesToScroll = vue.inject('slidesToScroll', vue.ref(0));
           const isSliding = vue.inject('isSliding', vue.ref(false));
+          const slidesCount = vue.inject('slidesCount', vue.ref(0));
           const isActive = vue.computed(() => props.index === currentSlide.value);
           const isPrev = vue.computed(() => props.index === currentSlide.value - 1);
           const isNext = vue.computed(() => props.index === currentSlide.value + 1);
@@ -799,6 +800,8 @@
               const max = Math.ceil(slidesToScroll.value + config.itemsToShow - 1);
               return props.index >= min && props.index <= max;
           });
+          const isFirst = vue.computed(() => props.index === 0);
+          const isLast = vue.computed(() => props.index === slidesCount.value - 1);
           return () => {
               var _a;
               return vue.h('li', {
@@ -811,6 +814,8 @@
                       'carousel__slide--prev': isPrev.value,
                       'carousel__slide--next': isNext.value,
                       'carousel__slide--sliding': isSliding.value,
+                      'carousel__slide--first': isFirst.value,
+                      'carousel__slide--last': isLast.value,
                   },
                   'aria-hidden': !isVisible.value,
               }, (_a = slots.default) === null || _a === void 0 ? void 0 : _a.call(slots, {
