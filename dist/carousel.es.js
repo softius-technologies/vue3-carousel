@@ -1,5 +1,5 @@
 /**
- * Vue 3 Carousel 0.5.4
+ * Vue 3 Carousel 0.5.5
  * (c) 2024
  * @license MIT
  */
@@ -10,7 +10,7 @@ const defaultConfigs = {
     itemsToScroll: 1,
     modelValue: 0,
     transition: 300,
-    animation: 1400,
+    animation: 300,
     autoplay: 0,
     snapAlign: 'center',
     wrapAround: false,

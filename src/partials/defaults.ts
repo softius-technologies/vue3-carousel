@@ -5,7 +5,7 @@ export const defaultConfigs: CarouselConfig = {
   itemsToScroll: 1,
   modelValue: 0,
   transition: 300,
-  animation: 1400,
+  animation: 300,
   autoplay: 0,
   snapAlign: 'center',
   wrapAround: false,
