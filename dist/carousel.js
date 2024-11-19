@@ -1,5 +1,5 @@
 /**
- * Vue 3 Carousel 0.3.5
+ * Vue 3 Carousel 0.5.3
  * (c) 2024
  * @license MIT
  */
@@ -69,6 +69,11 @@
       // sliding transition time in ms
       transition: {
           default: defaultConfigs.transition,
+          type: Number,
+      },
+      // sliding transition time in ms
+      animation: {
+          default: defaultConfigs.animation,
           type: Number,
       },
       // an object to store breakpoints

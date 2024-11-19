@@ -34,6 +34,11 @@ export const carouselProps = {
     default: defaultConfigs.transition,
     type: Number,
   },
+  // sliding transition time in ms
+  animation: {
+    default: defaultConfigs.animation,
+    type: Number,
+  },
   // an object to store breakpoints
   breakpoints: {
     default: defaultConfigs.breakpoints,

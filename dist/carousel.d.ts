@@ -61,6 +61,10 @@ declare const _default$1: vue.DefineComponent<{
         default: number | undefined;
         type: NumberConstructor;
     };
+    animation: {
+        default: number | undefined;
+        type: NumberConstructor;
+    };
     breakpoints: {
         default: Breakpoints | undefined;
         type: ObjectConstructor;
@@ -134,6 +138,10 @@ declare const _default$1: vue.DefineComponent<{
         default: number | undefined;
         type: NumberConstructor;
     };
+    animation: {
+        default: number | undefined;
+        type: NumberConstructor;
+    };
     breakpoints: {
         default: Breakpoints | undefined;
         type: ObjectConstructor;
@@ -187,6 +195,7 @@ declare const _default$1: vue.DefineComponent<{
     throttle: number;
     snapAlign: "start" | "end" | "center" | "center-even" | "center-odd";
     transition: number;
+    animation: number;
     breakpoints: Record<string, any>;
     autoplay: number;
     pauseAutoplayOnHover: boolean;
