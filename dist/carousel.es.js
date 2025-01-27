@@ -1,5 +1,5 @@
 /**
- * Vue 3 Carousel 0.5.6
+ * Vue 3 Carousel 0.5.7
  * (c) 2025
  * @license MIT
  */
@@ -413,6 +413,7 @@ var Carousel = defineComponent({
         const isDragging = ref(false);
         const initialDirectionThreshold = 10;
         const isHorizontalDrag = ref(false);
+        let isDraggingEnded = ref(false);
         const handleMouseEnter = () => {
             isHover.value = true;
         };
@@ -461,12 +462,19 @@ var Carousel = defineComponent({
             const tolerance = Math.sign(dragged.x) * 0.4;
             const draggedSlides = Math.round(dragged.x / slideWidth.value + tolerance) * direction;
             // Prevent clicking if there is clicked slides
-            if (draggedSlides && !isTouch) {
+            if (dragged.x && !isTouch) {
+                isDraggingEnded.value = true;
                 const captureClick = (e) => {
-                    e.preventDefault();
-                    window.removeEventListener('click', captureClick);
+                    if (isDraggingEnded.value) {
+                        e.stopImmediatePropagation();
+                        e.preventDefault();
+                        setTimeout(() => {
+                            isDraggingEnded.value = false;
+                        }, 200);
+                    }
+                    window.removeEventListener('click', captureClick, true);
                 };
-                window.addEventListener('click', captureClick);
+                window.addEventListener('click', captureClick, true);
             }
             slideTo(currentSlideIndex.value - draggedSlides);
             dragged.x = 0;

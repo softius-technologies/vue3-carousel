@@ -175,6 +175,7 @@ export default defineComponent({
     const isDragging = ref(false)
     const initialDirectionThreshold = 10;
     const isHorizontalDrag = ref(false)
+    let isDraggingEnded = ref(false);
 
     const handleMouseEnter = (): void => {
       isHover.value = true
@@ -234,12 +235,19 @@ export default defineComponent({
         Math.round(dragged.x / slideWidth.value + tolerance) * direction
 
       // Prevent clicking if there is clicked slides
-      if (draggedSlides && !isTouch) {
+      if (dragged.x && !isTouch) {
+        isDraggingEnded.value = true;
         const captureClick = (e: MouseEvent) => {
-          e.preventDefault();
-          window.removeEventListener('click', captureClick)
+          if (isDraggingEnded.value) {
+            e.stopImmediatePropagation(); 
+            e.preventDefault();
+            setTimeout(() => {
+              isDraggingEnded.value = false;
+            }, 200); 
+          }  
+          window.removeEventListener('click', captureClick, true)
         }
-        window.addEventListener('click', captureClick)
+        window.addEventListener('click', captureClick, true)
       }
 
       slideTo(currentSlideIndex.value - draggedSlides)
