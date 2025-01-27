@@ -1,6 +1,6 @@
 /**
- * Vue 3 Carousel 0.5.5
- * (c) 2024
+ * Vue 3 Carousel 0.5.6
+ * (c) 2025
  * @license MIT
  */
 (function (global, factory) {
@@ -467,9 +467,10 @@
               // Prevent clicking if there is clicked slides
               if (draggedSlides && !isTouch) {
                   const captureClick = (e) => {
-                      window.removeEventListener('click', captureClick, true);
+                      e.preventDefault();
+                      window.removeEventListener('click', captureClick);
                   };
-                  window.addEventListener('click', captureClick, true);
+                  window.addEventListener('click', captureClick);
               }
               slideTo(currentSlideIndex.value - draggedSlides);
               dragged.x = 0;
